@@ -124,9 +124,13 @@ function flipCamera() {
 
 function capturePhoto() {
     const video = document.getElementById("cameraPreview");
+    const scale = 3;
     const canvas = document.createElement("canvas");
-    canvas.width = video.videoWidth; canvas.height = video.videoHeight;
-    canvas.getContext("2d").drawImage(video, 0, 0);
+    canvas.width = video.videoWidth * scale;
+    canvas.height = video.videoHeight * scale;
+    const ctx = canvas.getContext("2d");
+    ctx.scale(scale, scale);
+    ctx.drawImage(video, 0, 0);
     canvas.toBlob(blob => {
         if (!blob) return;
         if (blob.size > 1024 * 1024) { showError("Ukuran foto melebihi 1 MB."); return; }
