@@ -1,0 +1,26 @@
+.font-cousine { font-family: "Cousine", monospace; }
+.skeleton { animation: pulse 1.5s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+.folder-wrap {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 0.35s ease forwards;
+}
+@keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+#modalBackdrop { transition: opacity 0.25s ease; }
+#modalBackdrop.hidden { pointer-events: none; }
+#modalBox { transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), opacity 0.25s ease; }
+#modalBackdrop.hidden #modalBox { transform: translateY(30px) scale(0.95); opacity: 0; }
+select { -webkit-appearance: none; appearance: none; }
+#cameraPreview, #photoPreview { object-fit: cover; border-radius: 12px; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 9999px; }
+.field:focus { outline: none; border-color: #0071e3; box-shadow: 0 0 0 3px rgba(0,113,227,0.18); }
+@keyframes shine { from{left:-60%} to{left:130%} }
+#submitBtn::after {
+    content:''; position:absolute; top:0; left:-60%;
+    width:40%; height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);
+    transform:skewX(-20deg); animation:shine 2.2s ease-in-out infinite;
+}
+#submitBtn { overflow:hidden; position:relative; }

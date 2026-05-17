@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cousine:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <title>STMIK · Class of 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <link rel="stylesheet" href="css/Mn4Qv8Ty1Za7Lp3Xs9Hd2Uk6Rc0Be5Wj.css">
+</head>
+<body class="font-cousine bg-[#f5f5f7] min-h-screen text-[#1d1d1f] antialiased">
+
+    <header class="text-center pt-14 pb-8 px-6">
+        <p class="text-[11px] font-bold tracking-[0.18em] uppercase text-[#6e6e73] mb-2">STMIK</p>
+        <h1 class="text-5xl font-bold tracking-tight leading-none">
+            Class of <span class="text-[#0071e3]">2026</span>
+        </h1>
+    </header>
+
+    <div class="relative max-w-xs mx-auto px-6 mb-10">
+        <svg class="absolute left-9 top-1/2 -translate-y-1/2 text-[#6e6e73] pointer-events-none" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input id="search" type="text" placeholder="cari temanmu..." autocomplete="off"
+            class="w-full bg-white border border-black/[0.08] rounded-xl py-2.5 pl-9 pr-4 text-[13px] text-[#1d1d1f] placeholder-[#6e6e73] shadow-sm outline-none focus:border-[#0071e3] focus:ring-2 focus:ring-[#0071e3]/20 transition">
+    </div>
+
+    <div id="folder" class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-x-5 gap-y-6 justify-items-center px-8 max-w-6xl mx-auto"></div>
+    <div class="flex justify-center mt-10">
+        <button id="buatNote"
+            class="bg-black text-white text-sm px-5 py-2.5 rounded-xl hover:scale-105 active:scale-95 transition fixed bottom-4">
+            Tulis Catatan Kamu
+        </button>
+    </div>
+    <p id="empty" class="hidden text-center text-[#6e6e73] text-sm py-20">No students found.</p>
+
+    <div id="modalBackdrop" class="hidden fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-0 sm:px-4">
+        <div id="modalBox" class="bg-white w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-y-auto max-h-[92dvh]">
+            <div class="flex justify-center pt-3 pb-1 sm:hidden">
+                <div class="w-10 h-1 bg-[#d1d1d6] rounded-full"></div>
+            </div>
+            <div class="px-6 pt-4 pb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-xl font-bold">Tulis Catatan</h2>
+                    </div>
+                    <button id="closeModal" class="text-[#6e6e73] hover:text-[#1d1d1f] transition text-2xl leading-none">&times;</button>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-[11px] font-bold uppercase tracking-widest text-[#6e6e73] block mb-1.5">Nama Lengkap</label>
+                        <input id="f_name" type="text" placeholder="Nama" autocomplete="off"
+                            class="field w-full border border-black/10 rounded-xl px-3.5 py-2.5 text-sm bg-[#f9f9fb] transition">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold uppercase tracking-widest text-[#6e6e73] block mb-1.5">NIM</label>
+                        <input id="f_nim" type="text" placeholder="C22..." autocomplete="off"
+                            class="field w-full border border-black/10 rounded-xl px-3.5 py-2.5 text-sm bg-[#f9f9fb] transition">
+                    </div>
+                    <div class="relative">
+                        <label class="text-[11px] font-bold uppercase tracking-widest text-[#6e6e73] block mb-1.5">Program Studi</label>
+                        <select id="f_dept" class="field w-full border border-black/10 rounded-xl px-3.5 py-2.5 text-sm bg-[#f9f9fb] transition cursor-pointer">
+                            <option value="" disabled selected>Pilih Prodi...</option>
+                            <option value="TI">Teknik Informatika (TI)</option>
+                            <option value="SI">Sistem Informasi (SI)</option>
+                            <option value="MI">Manajemen Informatika (MI)</option>
+                        </select>
+                        <svg class="absolute right-3.5 top-[calc(50%+10px)] -translate-y-1/2 pointer-events-none text-[#6e6e73]" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold uppercase tracking-widest text-[#6e6e73] block mb-1.5">Catatan / Pesan</label>
+                        <textarea id="f_note" rows="3" placeholder="catatan..."
+                            class="field w-full border border-black/10 rounded-xl px-3.5 py-2.5 text-sm bg-[#f9f9fb] transition resize-none"></textarea>
+                    </div>
+                    <div>
+                        <div id="cameraPanel">
+                            <div class="relative bg-black rounded-xl overflow-hidden">
+                                <video id="cameraPreview" class="w-full h-auto block" autoplay playsinline></video>
+                                <button onclick="flipCamera()" class="absolute top-2 right-2 bg-black/50 text-white rounded-full p-1.5 text-xs leading-none">🔄</button>
+                            </div>
+                            <button onclick="capturePhoto()" class="mt-2 w-full bg-[#1d1d1f] text-white text-sm py-2.5 rounded-xl font-bold hover:bg-[#333] transition">
+                                TAKE
+                            </button>
+                        </div>
+                        <div id="photoPreviewWrap" class="hidden mt-3 relative">
+                            <img id="photoPreview" class="w-full" style="max-height:200px;object-fit:cover;border-radius:12px;" alt="Preview">
+                            <button onclick="retakePhoto()" class="absolute top-2 right-2 bg-black/60 text-white rounded-full px-2 py-1 text-[10px] font-bold">Ulangi</button>
+                            <p id="photoSizeLabel" class="text-[10px] text-[#6e6e73] mt-1 text-center"></p>
+                        </div>
+                    </div>
+                    <p id="formError" class="hidden text-red-500 text-xs font-bold text-center py-1 px-3 bg-red-50 rounded-lg"></p>
+                    <button id="submitBtn" onclick="submitForm()"
+                        class="w-full bg-[#0071e3] text-white font-bold text-sm py-3 rounded-xl hover:bg-[#0077ed] active:scale-95 transition-all mt-2">
+                        Kirim
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="successModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
+        <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-xs w-full text-center">
+            <div class="text-5xl mb-4">🎉</div>
+            <h3 class="text-lg font-bold mb-1">Catatan Terkirim dan akan tampil sebentar lagi!</h3>
+            <button onclick="closeSuccess()" class="w-full bg-[#1d1d1f] text-white font-bold text-sm py-3 rounded-xl hover:bg-[#333] transition">Tutup</button>
+        </div>
+    </div>
+
+<script src="js/a7f3c9d2e8b14f6a91c5d7e3b2f8a4c1.js"></script>
+<script src="js/aK7mQ2xP9vL4nR8tY1cD6sF3hJ0uW5zB.js"></script>
+<script src="js/Qw8Rn3Xa7Lp1Vk6Ts9Hd2Ym4Uc0Be5Fj.js"></script>
+</body>
+</html>
