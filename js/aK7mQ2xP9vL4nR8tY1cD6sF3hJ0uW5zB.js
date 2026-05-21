@@ -34,8 +34,8 @@ async function fetchData() {
     renderSkeletons(8);
     try {
         const url = Xf8Qn2Lm7Za1Pk4Rv9Ty6Hs3Ud0We5Bj + "&t=" + Date.now();
-        const res = await fetch(url, { cache: "no-store" });
-        // const res = await fetch(Xf8Qn2Lm7Za1Pk4Rv9Ty6Hs3Ud0We5Bj);
+        // const res = await fetch(url, { cache: "no-store" });
+        const res = await fetch(Xf8Qn2Lm7Za1Pk4Rv9Ty6Hs3Ud0We5Bj);
         const csvText = await res.text();
         const parsed = Papa.parse(csvText, { header: true });
         allRows = parsed.data;
