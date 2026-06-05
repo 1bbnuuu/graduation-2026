@@ -31,7 +31,7 @@
     <div id="folder" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-x-5 gap-y-6 justify-items-center px-8 max-w-6xl mx-auto"></div>
     <div class="flex justify-center mt-10">
         <button id="buatNote"
-            class="bg-black text-white text-sm px-5 py-2.5 rounded-xl hover:scale-105 active:scale-95 transition fixed bottom-4">
+            class="bg-black text-white text-sm px-5 py-2.5 rounded-xl hover:px-6 active:scale-95 transition-all delay-100 fixed bottom-4">
             Tulis Catatan Kamu
         </button>
     </div>
@@ -79,7 +79,7 @@
                         <div id="cameraPanel">
                             <div class="relative bg-black rounded-xl overflow-hidden">
                                 <video id="cameraPreview" class="w-full h-auto block" autoplay playsinline></video>
-                                <button onclick="flipCamera()" class="absolute top-2 right-2 bg-black/50 text-white rounded-full p-1.5 text-xs leading-none">🔄</button>
+                                <button onclick="flipCamera()" class="absolute top-2 right-2 bg-black text-white rounded-full text-xs px-2 pt-1">ganti kamera</button>
                             </div>
                             <button onclick="capturePhoto()" class="mt-2 w-full bg-[#1d1d1f] text-white text-sm py-2.5 rounded-xl font-bold hover:bg-[#333] transition">
                                 TAKE
@@ -93,7 +93,7 @@
                     </div>
                     <p id="formError" class="hidden text-red-500 text-xs font-bold text-center py-1 px-3 bg-red-50 rounded-lg"></p>
                     <button id="submitBtn" onclick="submitForm()"
-                        class="w-full bg-[#0071e3] text-white font-bold text-sm py-3 rounded-xl hover:bg-[#0077ed] active:scale-95 transition-all mt-2">
+                        class="w-full bg-[#0071e3] text-white font-bold text-sm py-3 rounded-xl mt-2">
                         Kirim
                     </button>
                 </div>
@@ -103,7 +103,6 @@
 
     <div id="successModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
         <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-xs w-full text-center">
-            <div class="text-5xl mb-4">🎉</div>
             <h3 class="text-lg font-bold mb-1">Catatan Terkirim dan akan tampil sebentar lagi!</h3>
             <button onclick="closeSuccess()" class="w-full bg-[#1d1d1f] text-white font-bold text-sm py-3 rounded-xl hover:bg-[#333] transition">Tutup</button>
         </div>

@@ -44,7 +44,7 @@ function renderRows(rows) {
 
             <div class="absolute top-4 flex justify-center w-full">
                 <div class="bg-white w-5/6 md:h-32 h-20 group-hover:-translate-y-4 transition-transform duration-300 px-2 overflow-hidden">
-                    <p class="font-bold text-sm">${profile.name}</p>
+                    <p class="font-bold text-sm pt-[2px]">${profile.name}</p>
                     <p class="text-[8px]">${profile.note}</p>
                 </div>
             </div>

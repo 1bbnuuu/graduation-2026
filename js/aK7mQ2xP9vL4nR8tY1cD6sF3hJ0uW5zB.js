@@ -27,15 +27,15 @@
     47,112,117,98,63,111,117,116,112,117,116,61,99,115,118
   ].map(c => String.fromCharCode(c)).join("");
 
-  return p1 + p2 + p3 + p4 + p5;
+  return p1 + p2 + p3 + p4 + p5 + "&t=" + Date.now();
 })(); 
 
 async function fetchData() {
     renderSkeletons(8);
     try {
         const url = Xf8Qn2Lm7Za1Pk4Rv9Ty6Hs3Ud0We5Bj + "&t=" + Date.now();
-        // const res = await fetch(url, { cache: "no-store" });
-        const res = await fetch(Xf8Qn2Lm7Za1Pk4Rv9Ty6Hs3Ud0We5Bj);
+        const res = await fetch(url, { cache: "no-store" });
+        // const res = await fetch(Xf8Qn2Lm7Za1Pk4Rv9Ty6Hs3Ud0We5Bj);
         const csvText = await res.text();
         const parsed = Papa.parse(csvText, { header: true });
         allRows = parsed.data;
